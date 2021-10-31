@@ -7,7 +7,7 @@ const port = process.env.PORT || 4000;
 
 // const bodyParser = require("body-parser");
 require("dotenv").config();
-// const ObjectId = require("mongodb").ObjectId;
+const ObjectId = require("mongodb").ObjectId;
 
 app.use(cors());
 app.use(express.json());
@@ -32,6 +32,22 @@ async function run() {
       const cursor = dataCollection.find({});
       const data = await cursor.toArray();
       res.send(data);
+    });
+
+    // app.get("/singleData", (req, res) => {
+    //   console.log(req.params.id);
+    //   dataCollection
+    //     .find({ _id: ObjectId(req.params.id) })
+    //     .toArray((err, results) => {
+    //       res.send(results[0]);
+    //     });
+    // });
+
+    app.post("/userData", (req, res) => {
+      console.log(req.body);
+      // userCollection.insertOne(req.body).then((documents) => {
+      //   res.send(documents.insertedId);
+      // });
     });
   } finally {
     // await client.close()
